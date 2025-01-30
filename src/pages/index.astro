@@ -1,0 +1,23 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Welcome from "../components/Welcome.astro";
+import Video from "../components/Video.astro";
+import Grid from "../components/Grid.astro";
+import Av from "../components/Av.astro";
+import Card from "../components/Card.astro";
+import Info from "../components/Info.astro";
+// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
+
+function handleClick() {
+    alert("Button clicked!");
+}
+---
+
+<Layout>
+    <Welcome />
+    <Av />
+    <Grid />
+    <Video />
+    <Card />
+    <Info />
+</Layout>
