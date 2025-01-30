@@ -1,38 +1,20 @@
 <div
-    class="min-h-screen bg-gray-100/90 flex flex-col items-center justify-center"
+    class="min-h-screen bg-[#F9F9F9] flex flex-col items-center justify-center"
 >
     <h2
-        class="font-medium text-center sm:mx-80 sm:mb-12 max-sm:mx-4 max-sm:mb-2 text-[#31323D] text-[32px] max-sm:text-[24px] max-sm:text-left pt-[160px] max-sm:pt-[260px]"
+        class="font-medium text-center sm:mx-80 mb-12 max-sm:mx-4 text-[#31323D] text-[32px] max-sm:text-[21px] max-sm:text-center pt-[160px]"
     >
         Explore our wide selection of products that helps you preserve your
         memories, in your own style.
     </h2>
-    <div class="sm:hidden">
-        <h1
-            class="text-[68px] max-sm:text-[36px] font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[80px] max-sm:leading-[50px]"
-        >
-            We track your memories.
-        </h1>
-        <p
-            class="text-center font-medium text-[18px] leading-[24px] text-[#3D3D3D] mb-4"
-        >
-            Your entire life-story right at your fingertips.
-        </p>
-        <div class="flex justify-center mb-[80px]">
-            <button
-                class="bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
-            >
-                Try AirVault Now
-            </button>
-        </div>
-    </div>
+
     <div class="w-full px-4 lg:px-20">
         <div
             class="grid grid-cols-1 lg:grid-cols-2 gap-4 w-full max-w-[1200px] mx-auto"
         >
             <!-- Card 1 -->
             <div
-                class="bg-white py-16 max-sm:px-6 lg:px-[60px] rounded-2xl w-full h-auto lg:h-[640px]"
+                class="bg-[#FFFFFF] py-16 max-sm:px-6 lg:px-[60px] rounded-2xl w-full max-sm:h-[720px] lg:h-[640px] overflow-hidden"
             >
                 <p
                     class="text-[36px] lg:text-[40px] text-[#58585C] font-medium"
@@ -55,15 +37,36 @@
                     >
                 </p>
                 <button
-                    class="mt-14 bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
+                    class="mt-12 mb-7 sm:mt-[116px] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
                 >
                     Try AirVault Now
                 </button>
+                <!-- image mobile-->
+                <div
+                    class="w-full h-auto flex justify-center items-center sm:hidden"
+                >
+                    <img
+                        src="/mav-1.png"
+                        alt="AirVault Cloud"
+                        class="w-full h-auto"
+                    />
+                </div>
+
+                <!-- image desktop -->
+                <div
+                    class="hidden sm:flex justify-center items-center relative"
+                >
+                    <img
+                        src="/av-1.png"
+                        alt="AirVault Cloud"
+                        class="w-[55%] h-auto absolute -bottom-40 -right-16"
+                    />
+                </div>
             </div>
 
             <!-- Card 2 -->
             <div
-                class="bg-white py-16 max-sm:px-6 lg:px-[60px] rounded-2xl w-full h-auto lg:h-[640px]"
+                class="bg-white py-16 max-sm:px-6 lg:px-[60px] rounded-2xl w-full h-auto lg:h-[640px] overflow-hidden"
             >
                 <p
                     class="text-[36px] lg:text-[40px] text-[#58585C] font-medium"
@@ -78,7 +81,7 @@
                     >
                 </p>
                 <p
-                    class="mt-6 text-[#64667A] text-[18px] lg:text-[21px] font-medium"
+                    class="mt-6 text-[#64667A] text-[18px] lg:text-[22px] font-medium w-[60%] max-sm:w-[70%]"
                 >
                     AirVault Cloud lets you <span
                         class="font-bold text-[#31323D]"
@@ -86,10 +89,18 @@
                     > so you can take them with you even on the craziest of adventures.
                 </p>
                 <button
-                    class="mt-14 pt-px bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
+                    class="mt-12 mb-[136px] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
                 >
                     Try AirVault Now
                 </button>
+                <!-- image -->
+                <div class="flex justify-center items-center relative">
+                    <img
+                        src="/av-2.png"
+                        alt="AirVault Cloud"
+                        class="w-[65%] max-sm:w-[85%] h-auto absolute bottom-5 -right-16 max-sm:-right-6 max-sm:bottom-[70px] max-sm:translate-x-8 max-sm:scale-125"
+                    />
+                </div>
             </div>
 
             <!-- Card 3 -->
@@ -122,12 +133,12 @@
                     </button>
                 </div>
                 <div
-                    class="w-full lg:w-[65%] flex justify-center max-sm:justify-start max-sm:mt-6 lg:mt-0 rounded-xl pr-0 max-sm:hidden"
+                    class="w-full lg:w-[65%] flex justify-center max-sm:justify-start max-sm:mt-6 lg:mt-0 rounded-xl pr-0"
                 >
                     <img
                         src="/av-pro.svg"
                         alt="AirVault Pro Device"
-                        class="max-w-full h-auto scale-110 rounded-xl"
+                        class="max-w-full h-auto sm:scale-110 rounded-xl -mr-[90px] -mb-[37px] max-sm:scale-125 max-sm:-ml-[11px]"
                     />
                 </div>
             </div>
