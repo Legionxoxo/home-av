@@ -1,0 +1,88 @@
+---
+export const client = "load";
+---
+
+<script>
+    // Ensure the script runs after the page loads
+    document.addEventListener("DOMContentLoaded", function () {
+        const thankYouSection = document.getElementById("thank-you-section");
+        const joinWaitlistSection = document.getElementById(
+            "join-waitlist-section"
+        );
+
+        // Show thank-you section if form has been visited
+        if (localStorage.getItem("formCompleted")) {
+            if (thankYouSection && joinWaitlistSection) {
+                thankYouSection.classList.remove("hidden");
+                joinWaitlistSection.classList.add("hidden");
+            }
+        }
+
+        // Attach functions globally
+        window.handleFormRedirect = function () {
+            localStorage.setItem("formCompleted", "true");
+            window.location.href = "https://forms.gle/L3Ki1pguQ26CkW2f7";
+        };
+
+        window.resetFormFlag = function () {
+            localStorage.removeItem("formCompleted");
+            window.location.href = "/";
+        };
+    });
+</script>
+
+<div class="min-h-screen bg-[#F9F9F9]">
+    <div class="pt-6 mb-20 ml-16 max-sm:ml-4">
+        <img src="/logo.svg" alt="AirVault Logo" />
+    </div>
+
+    <!-- Join Waitlist Section -->
+    <div
+        id="join-waitlist-section"
+        class="flex flex-col items-center justify-center h-[calc(100vh-250px)] max-sm:mx-4"
+    >
+        <h1
+            class="text-[40px] text-center max-sm:text-[36px] font-bold mb-12 max-sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[55px] max-sm:tracking-tight"
+        >
+            Join the waitlist for <span
+                class="font-extrabold bg-gradient-to-r from-[#FF9900] via-[#F54545] to-[#B41FFF] bg-clip-text text-transparent"
+            >
+                <br />AirVault!
+            </span>
+        </h1>
+
+        <button
+            onclick="window.handleFormRedirect()"
+            class="max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
+        >
+            Join the waitlist
+        </button>
+    </div>
+
+    <!-- Thank You Section -->
+    <div
+        id="thank-you-section"
+        class="flex flex-col items-center justify-center h-[calc(100vh-250px)] max-sm:mx-4"
+    >
+        <h1
+            class="text-[40px] mb-4 text-center max-sm:text-[36px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[55px] max-sm:tracking-tight"
+        >
+            We've added you to <span>our waiting list!</span>
+        </h1>
+        <p class="font-medium text-[16px] text-[#64667A] mb-12">
+            We'll let you know when AirVault is ready!
+        </p>
+        <button
+            onclick="window.resetFormFlag()"
+            class="max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] text-[#F9F9F9] py-3 px-14 rounded-full font-medium text-[18px]"
+        >
+            Continue
+        </button>
+        <button
+            onclick="window.handleFormRedirect()"
+            class="max-sm:w-[calc(100%-2rem)] font-semibold text-[#2766F5] py-3 px-14 rounded-full text-[18px] max-sm:mt-4"
+        >
+            Submit another <span class="-rotate-90 mt-px">&gt;</span>
+        </button>
+    </div>
+</div>

@@ -21,9 +21,19 @@ export const client = "load";
             AirVault is the easiest way to capture and relive your memories.
         </p>
         <button
+            id="tryButton"
             class="mb-28 max-sm:mb-64 bg-[#FF6A00] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
         >
             Try AirVault Now
         </button>
     </div>
 </div>
+
+<script>
+    const tryButton = document.getElementById("tryButton");
+    if (tryButton) {
+        tryButton.addEventListener("click", function () {
+            window.location.href = "/register";
+        });
+    }
+</script>
