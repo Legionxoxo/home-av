@@ -1,3 +1,7 @@
+---
+export const client = "load";
+---
+
 <div class="min-h-screen bg-[#F9F9F9]">
     <h1
         class="font-bold sm:mx-64 max-sm:mx-4 mb-4 text-center text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
@@ -70,4 +74,15 @@
             class="absolute w-1/2 h-1/2 object-cover top-1/4 left-1/4 z-0"
         />
     </div>
+
+    <button class="tryButton"> Try Now </button>
 </div>
+
+<script>
+    const tryButtons = document.querySelectorAll(".tryButton");
+    tryButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            window.location.href = "/register";
+        });
+    });
+</script>

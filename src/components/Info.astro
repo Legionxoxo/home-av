@@ -37,7 +37,7 @@
                     >
                 </p>
                 <button
-                    class="mt-12 mb-7 sm:mt-[116px] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
+                    class="tryButton mt-12 mb-7 hover:bg-[#F5F3F3] sm:mt-[116px] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
                 >
                     Try AirVault Now
                 </button>
@@ -89,7 +89,7 @@
                     > so you can take them with you even on the craziest of adventures.
                 </p>
                 <button
-                    class="mt-12 mb-[136px] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
+                    class="tryButton mt-12 mb-[136px] hover:bg-[#F5F3F3] bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
                 >
                     Try AirVault Now
                 </button>
@@ -132,7 +132,7 @@
                         >
                     </p>
                     <button
-                        class="mt-14 bg-white border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
+                        class="tryButton mt-14 bg-white hover:bg-[#F5F3F3] border border-[#31323D] text-[#31323D] font-semibold py-2 px-4 rounded-full transition-transform hover:scale-110"
                     >
                         Try AirVault Now
                     </button>
@@ -150,3 +150,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    const tryButtons = document.querySelectorAll(".tryButton");
+    tryButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            window.location.href = "/register";
+        });
+    });
+</script>

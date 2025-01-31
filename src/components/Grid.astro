@@ -1,5 +1,5 @@
 ---
-
+export const client = "load";
 ---
 
 <div class="flex flex-col bg-[#FFFFFF]">
@@ -15,7 +15,7 @@
         Letting you live those happy moments that truly happen only once.
     </p>
     <button
-        class="mb-12 max-sm:mb-12 w-[200px] mx-auto bg-[#FF6A00] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
+        class="tryButton mb-12 max-sm:mb-12 w-[200px] mx-auto bg-[#FF6A00] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
     >
         Try AirVault Now
     </button>
@@ -109,3 +109,12 @@
         </div>
     </div>
 </div>
+
+<script>
+    const tryButtons = document.querySelectorAll(".tryButton");
+    tryButtons.forEach((button) => {
+        button.addEventListener("click", function () {
+            window.location.href = "/register";
+        });
+    });
+</script>
