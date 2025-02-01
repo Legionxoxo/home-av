@@ -2,7 +2,7 @@
     class="min-h-screen bg-[#F9F9F9] flex flex-col items-center justify-center"
 >
     <h2
-        class="font-medium text-center sm:mx-80 mb-12 max-sm:mx-4 text-[#31323D] text-[32px] max-sm:text-[21px] max-sm:text-center pt-[160px] max-sm:-mt-[440px]"
+        class="h1i font-medium text-center sm:mx-80 mb-12 max-sm:mx-4 max-sm:pt-60 text-[#31323D] text-[32px] max-sm:text-[21px] max-sm:text-center pt-[160px]"
     >
         Explore our wide selection of products that helps you preserve your
         memories, in your own style.
@@ -59,7 +59,7 @@
                     <img
                         src="/av-1.png"
                         alt="AirVault Cloud"
-                        class="w-[63%] h-auto absolute -bottom-40 -right-24 scale-75"
+                        class="w-[63%] h-auto absolute -bottom-40 -right-24 scale-75 img1i"
                     />
                 </div>
             </div>
@@ -98,7 +98,7 @@
                     <img
                         src="/av-2.png"
                         alt="AirVault Cloud"
-                        class="w-[65%] max-sm:w-[85%] h-auto absolute bottom-5 -right-16 max-sm:-right-6 max-sm:bottom-[70px] max-sm:translate-x-8 max-sm:scale-125"
+                        class="img2i w-[65%] max-sm:w-[85%] h-auto absolute bottom-5 -right-16 max-sm:-right-6 max-sm:bottom-[70px] max-sm:translate-x-8 max-sm:scale-125"
                     />
                 </div>
             </div>
@@ -109,7 +109,7 @@
             >
                 <div class="w-full lg:w-[41%]">
                     <h3
-                        class="text-[36px] lg:text-[40px] text-[#58585C] font-medium text-pretty"
+                        class="h3i text-[36px] lg:text-[40px] text-[#58585C] font-medium text-pretty"
                     >
                         <span
                             class="font-extrabold bg-gradient-to-r from-[#FF9900] via-[#F54545] to-[#B41FFF] bg-clip-text text-transparent"
@@ -143,7 +143,7 @@
                     <img
                         src="/av-pro.svg"
                         alt="AirVault Pro Device"
-                        class="max-w-full h-auto sm:scale-110 rounded-xl -mr-[90px] -mb-[37px] max-sm:scale-125 max-sm:-ml-[11px]"
+                        class="img3i max-w-full h-auto sm:scale-110 rounded-xl -mr-[60px] -mb-[55px] max-sm:scale-125 max-sm:-ml-[11px]"
                     />
                 </div>
             </div>
@@ -152,10 +152,108 @@
 </div>
 
 <script>
-    const tryButtons = document.querySelectorAll(".tryButton");
-    tryButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            window.location.href = "/register";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+        gsap.from(".h1i", {
+            scrollTrigger: {
+                trigger: ".h1i", // Trigger animation when paragraph comes into view
+                start: "top 70%",
+                end: "bottom 20%",
+                toggleActions: "play reverse play reverse", // Play when entering, reverse when leaving, play when re-entering
+                onLeave: () => {
+                    gsap.set(".h1i", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 100, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        /* image1 */
+
+        gsap.fromTo(
+            ".img1i",
+            {
+                opacity: 100,
+                y: 20, // Start position (off-screen at the bottom)
+            },
+            {
+                opacity: 1,
+                y: -27, // Move up when scrolling down
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img1i",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+
+        // Image 2 (Moves down when scrolling down, reverse on scroll up)
+
+        gsap.fromTo(
+            ".img2i",
+            {
+                opacity: 100,
+                y: -50, // Start position (off-screen at the top)
+            },
+            {
+                opacity: 1,
+                y: 30, // Move down when scrolling down
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img2i",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+
+        /* image3  */
+        if (mediaQuery.matches) {
+            gsap.fromTo(
+                ".img3i",
+                {
+                    opacity: 100,
+                    scale: 0.8,
+                    x: -20,
+                    y: -40, // Start position (off-screen at the top)
+                },
+                {
+                    y: -19,
+                    x: -3,
+                    scale: 1.1,
+                    opacity: 1,
+                    duration: 2,
+                    ease: "power2.out",
+                    scrollTrigger: {
+                        trigger: ".img1i",
+                        start: "top 100%",
+                        end: "bottom 20%", // Animation should happen across this area
+                        scrub: true, // Smooth scroll effect and reverse on scroll up
+                        toggleActions: "play reverse play reverse",
+                    },
+                }
+            );
+        }
+        // Button click functionality
+        const tryButtons = document.querySelectorAll(".tryButton");
+        tryButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                window.location.href = "/register";
+            });
         });
     });
 </script>

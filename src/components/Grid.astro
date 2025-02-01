@@ -4,18 +4,18 @@ export const client = "load";
 
 <div class="flex flex-col bg-[#FFFFFF]">
     <h1
-        class="pt-[116px] text-[68px] max-sm:text-[36px] font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[80px] max-sm:leading-[50px]"
+        class="h1grid pt-[116px] text-[68px] max-sm:text-[36px] font-bold text-center mb-4 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[80px] max-sm:leading-[50px]"
     >
         We know the faces you love
     </h1>
     <p
-        class="text-[22px] max-sm:text-[18px] mb-8 text-center text-[#3D3D3D] font-medium mx-[290px] max-sm:mx-4 max-sm:text-center max-sm:leading-[24px] text-pretty"
+        class="pgrid text-[22px] max-sm:text-[18px] mb-8 text-center text-[#3D3D3D] font-medium mx-[290px] max-sm:mx-4 max-sm:text-center max-sm:leading-[24px] text-pretty"
     >
         AirVault uses AI to find your loved ones, across all your memories.
         Letting you live those happy moments that truly happen only once.
     </p>
     <button
-        class="tryButton mb-12 max-sm:mb-12 w-[200px] mx-auto bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
+        class="tryButton mb-12 max-sm:mb-12 w-[200px] mx-auto bg-[#FF6A00] hover:bg-[#FA8532] hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
     >
         Try AirVault Now
     </button>
@@ -111,10 +111,66 @@ export const client = "load";
 </div>
 
 <script>
-    const tryButtons = document.querySelectorAll(".tryButton");
-    tryButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            window.location.href = "/register";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate heading elements
+        gsap.from(".h1grid", {
+            scrollTrigger: {
+                trigger: ".h1grid", // Trigger animation when heading comes into view
+                start: "top 80%",
+                end: "bottom 20%", // When top of the heading hits 100% of the viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".h1grid", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: -100, // Start from 100px below
+            duration: 1, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".pgrid", {
+            scrollTrigger: {
+                trigger: ".pgrid", // Trigger animation when paragraph comes into view
+                start: "top 90%",
+                end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
+                toggleActions: "play reverse play reverse", // Play when entering, reverse when leaving, play when re-entering
+                onLeave: () => {
+                    gsap.set(".pgrid", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 100, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".tryButton", {
+            scrollTrigger: {
+                trigger: ".tryButton", // Trigger animation when button comes into view
+                start: "top 80%",
+                end: "bottom 20%", // Trigger when button reaches 80% of viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".tryButton", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 1, // Start from invisible
+            scale: 0.9, // Slightly smaller at first
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        // Button click functionality
+        const tryButtons = document.querySelectorAll(".tryButton");
+        tryButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                window.location.href = "/register";
+            });
         });
     });
 </script>

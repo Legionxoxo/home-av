@@ -4,12 +4,12 @@ export const client = "load";
 
 <div class="min-h-screen bg-[#F9F9F9]">
     <h1
-        class="font-bold sm:mx-64 max-sm:mx-4 mb-4 text-center text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
+        class="h1c font-bold sm:mx-64 max-sm:mx-4 mb-4 text-center text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
     >
         Your memories are worth everything!
     </h1>
     <p
-        class="text-[22px] max-sm:mx-4 max-sm:text-[18px] text-[#31323D] mb-12 text-center"
+        class="pc text-[22px] max-sm:mx-4 max-sm:text-[18px] text-[#31323D] mb-12 text-center"
     >
         No one understands it better than us.
     </p>
@@ -20,27 +20,27 @@ export const client = "load";
         <img
             src="/card/card1.png"
             alt=""
-            class="max-sm:w-[140px] w-full h-full object-cover block"
+            class="max-sm:w-[140px] w-full h-full object-cover block img1c"
         />
         <img
             src="/card/card2.png"
             alt=""
-            class="max-sm:w-[140px] w-full h-full object-cover block sm:translate-y-20"
+            class="max-sm:w-[140px] w-full h-full object-cover block sm:translate-y-20 img2c"
         />
         <img
             src="/card/card3.png"
             alt=""
-            class="max-sm:w-[200px] max-sm:order-3 w-full h-full object-cover block sm:-translate-y-1 sm:scale-110"
+            class="max-sm:w-[200px] max-sm:order-3 w-full h-full object-cover block sm:-translate-y-1 sm:scale-110 img3c -rotate-[7.8deg]"
         />
         <img
             src="/card/card4.png"
             alt=""
-            class="max-sm:w-[140px] w-full h-full object-cover block sm:translate-y-20 sm:-translate-x-5 sm:rotate-[5deg] sm:scale-110"
+            class="max-sm:w-[140px] w-full h-full object-cover block sm:translate-y-20 sm:-translate-x-5 sm:rotate-[5deg] sm:scale-110 img4c"
         />
         <img
             src="/card/card5.png"
             alt=""
-            class="max-sm:w-[140px] w-full h-full object-cover block sm:rotate-[5deg] sm:scale-105"
+            class="max-sm:w-[140px] w-full h-full object-cover block sm:rotate-[5deg] sm:scale-105 img5c"
         />
     </div>
 
@@ -51,38 +51,182 @@ export const client = "load";
         <img
             src="/card/card1.png"
             alt=""
-            class="w-[80%] object-cover scale-105"
+            class="w-[80%] object-cover scale-105 img1cm"
         />
         <img
             src="/card/card2.png"
             alt=""
-            class="w-[80%] object-cover translate-x-9"
+            class="w-[80%] object-cover translate-x-9 img2cm"
         />
         <img
             src="/card/card4.png"
             alt=""
-            class="w-[80%] object-cover z-10 scale-110 translate-y-4"
+            class="w-[80%] object-cover z-10 scale-110 translate-y-4 img4cm"
         />
         <img
             src="/card/card5.png"
             alt=""
-            class="w-[80%] object-cover translate-x-9"
+            class="w-[80%] object-cover translate-x-9 img5cm"
         />
         <img
             src="/card/card3.png"
             alt=""
-            class="absolute w-1/2 h-1/2 object-cover top-1/4 left-1/4 z-0"
+            class="absolute w-1/2 h-1/2 object-cover top-1/4 left-1/4 z-0 img3cm"
         />
     </div>
-
-    <button class="tryButton"> Try Now </button>
 </div>
 
 <script>
-    const tryButtons = document.querySelectorAll(".tryButton");
-    tryButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            window.location.href = "/register";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+        const mediaQuery = window.matchMedia("(min-width: 1024px)");
+
+        // Animate heading elements
+        gsap.from(".h1c", {
+            scrollTrigger: {
+                trigger: ".h1c", // Trigger animation when heading comes into view
+                start: "top 80%",
+                end: "bottom 20%", // When top of the heading hits 100% of the viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".h1c", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 80, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".pc", {
+            scrollTrigger: {
+                trigger: ".pc", // Trigger animation when paragraph comes into view
+                start: "top 80%",
+                end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
+                toggleActions: "play reverse play reverse", // Play when entering, reverse when leaving, play when re-entering
+                onLeave: () => {
+                    gsap.set(".pc", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 100, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".tryButton", {
+            scrollTrigger: {
+                trigger: ".tryButton", // Trigger animation when button comes into view
+                start: "top 80%",
+                end: "bottom 20%", // Trigger when button reaches 80% of viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".tryButton", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 1, // Start from invisible
+            scale: 0.9, // Slightly smaller at first
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        // Animate img3c (main image in focus)
+        gsap.fromTo(
+            ".img3c",
+            {
+                opacity: 100,
+                rotation: 10,
+                x: -20,
+                y: -10,
+            },
+            {
+                rotation: -8,
+                y: -19,
+                x: -3,
+                scale: 1.1,
+                opacity: 1,
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img3c",
+                    start: "top 30%", // Start the animation when img3c reaches the center of the screen
+                    end: "bottom 70%",
+                    scrub: true,
+                    toggleActions: "play reverse play reverse",
+                    onEnter: () => {
+                        // Slowly move other images behind img3c
+                        gsap.to(".img1c", {
+                            zIndex: -1,
+                            scale: 0.85, // Slightly reduce size for depth effect
+                            y: 50, // Move it down slightly for depth effect
+                            duration: 1,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img2c", {
+                            zIndex: -1,
+                            scale: 0.85,
+                            y: -30, // Move it up slightly for depth effect
+                            duration: 1,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img4c", {
+                            zIndex: -1,
+                            scale: 0.85,
+                            y: 30, // Move it down slightly for depth effect
+                            duration: 1,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img5c", {
+                            zIndex: -1,
+                            scale: 0.85,
+                            y: -40, // Move it up slightly for depth effect
+                            duration: 1,
+                            ease: "power2.out",
+                        });
+                    },
+                    onLeaveBack: () => {
+                        // Reset the images back to normal scale and z-index when scrolling back up
+                        gsap.to(".img1c", {
+                            zIndex: 1,
+                            scale: 1,
+                            y: 0, // Reset to original position
+                            duration: 2,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img2c", {
+                            zIndex: 1,
+                            scale: 1,
+                            y: 0, // Reset to original position
+                            duration: 2,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img4c", {
+                            zIndex: 1,
+                            scale: 1,
+                            y: 0, // Reset to original position
+                            duration: 2,
+                            ease: "power2.out",
+                        });
+                        gsap.to(".img5c", {
+                            zIndex: 1,
+                            scale: 1,
+                            y: 0, // Reset to original position
+                            duration: 2,
+                            ease: "power2.out",
+                        });
+                    },
+                },
+            }
+        );
+
+        // Button click functionality
+        const tryButtons = document.querySelectorAll(".tryButton");
+        tryButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                window.location.href = "/register";
+            });
         });
     });
 </script>

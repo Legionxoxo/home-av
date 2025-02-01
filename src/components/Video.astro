@@ -6,12 +6,12 @@ export const client = "load";
     class="min-h-screen bg-[#F9F9F9] flex flex-col items-center justify-center"
 >
     <h1
-        class="font-bold text-center pt-[160px] max-sm:pt-[120px] mx-64 max-sm:mx-4 mb-4 text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
+        class="h1v font-bold text-center pt-[160px] max-sm:pt-[120px] mx-64 max-sm:mx-4 mb-4 text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
     >
         The best moments are the ones you share
     </h1>
     <p
-        class="text-[22px] mx-64 max-sm:mx-4 max-sm:text-[18px] text-[#31323D] mb-8 text-center"
+        class="pv text-[22px] mx-64 max-sm:mx-4 max-sm:text-[18px] text-[#31323D] mb-8 text-center"
     >
         Share your memories with your friends and family with a single click.
     </p>
@@ -29,22 +29,22 @@ export const client = "load";
             <img
                 src="/video1.png"
                 alt="Video 1"
-                class="w-[200px] h-[241px] rounded-xl translate-x-1 translate-y-1"
+                class="w-[200px] h-[241px] rounded-xl translate-x-1 translate-y-1 img1v"
             />
             <img
                 src="/video2.png"
                 alt="Video 2"
-                class="w-[191px] h-[230px] rounded-xl -translate-x-40 translate-y-40 z-20"
+                class="w-[191px] h-[230px] rounded-xl -translate-x-40 translate-y-40 z-20 img2v"
             />
             <img
                 src="/video3.png"
                 alt="Video 3"
-                class="w-[328px] h-[394px] rounded-xl -translate-x-[220px] -translate-y-[40px] z-10"
+                class="w-[328px] h-[394px] rounded-xl -translate-x-[220px] -translate-y-[40px] z-10 img3v"
             />
             <img
                 src="/video4.png"
                 alt="Video 4"
-                class="w-[420px] h-[362px] rounded-xl -translate-x-[348px] translate-y-[66px] z-20"
+                class="w-[420px] h-[362px] rounded-xl -translate-x-[348px] translate-y-[66px] z-20 img4v"
             />
         </div>
     </div>
@@ -58,10 +58,109 @@ export const client = "load";
 </div>
 
 <script>
-    const tryButtons = document.querySelectorAll(".tryButton");
-    tryButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            window.location.href = "/register";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate heading elements
+        gsap.from(".h1v", {
+            scrollTrigger: {
+                trigger: ".h1v", // Trigger animation when heading comes into view
+                start: "top 70%",
+                end: "bottom 20%", // When top of the heading hits 100% of the viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".h1v", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 40, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".pv", {
+            scrollTrigger: {
+                trigger: ".pv", // Trigger animation when paragraph comes into view
+                start: "top 90%",
+                end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
+                toggleActions: "play reverse play reverse", // Play when entering, reverse when leaving, play when re-entering
+                onLeave: () => {
+                    gsap.set(".pv", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 0, // Start from invisible
+            y: 100, // Start from 100px below
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        gsap.from(".tryButton", {
+            scrollTrigger: {
+                trigger: ".tryButton", // Trigger animation when button comes into view
+                start: "top 80%",
+                end: "bottom 20%", // Trigger when button reaches 80% of viewport
+                toggleActions: "play reverse play reverse",
+                onLeave: () => {
+                    gsap.set(".tryButton", { opacity: 0 }); // Reset to initial state when leaving
+                },
+            },
+            opacity: 1, // Start from invisible
+            scale: 0.9, // Slightly smaller at first
+            duration: 1.2, // Duration of animation
+            ease: "power2.out",
+        });
+
+        /* image */
+        gsap.fromTo(
+            ".img1v",
+            {
+                opacity: 100,
+                y: 20, // Start position (off-screen at the bottom)
+            },
+            {
+                opacity: 1,
+                y: -20, // Move up when scrolling down
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img1v",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+
+        // Image 2 (Moves down when scrolling down, reverse on scroll up)
+        gsap.fromTo(
+            ".img4v",
+            {
+                opacity: 100,
+                y: -20, // Start position (off-screen at the top)
+            },
+            {
+                opacity: 1,
+                y: 20, // Move down when scrolling down
+                duration: 2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img4v",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+        // Button click functionality
+        const tryButtons = document.querySelectorAll(".tryButton");
+        tryButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                window.location.href = "/register";
+            });
         });
     });
 </script>

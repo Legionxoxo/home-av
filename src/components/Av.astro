@@ -7,22 +7,22 @@ export const client = "load";
         class="flex flex-col items-center justify-center min-h-screen max-sm:mx-4"
     >
         <h2
-            class="text-[40px] max-sm:text-[24px] font-medium mb-1 text-[#31323D] max-sm:text-center"
+            class="h2av text-[40px] max-sm:text-[24px] font-medium mb-1 text-[#31323D] max-sm:text-center"
         >
             AirVault doesn't just store your media.
         </h2>
         <h1
-            class="font-bold mb-4 text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
+            class="h1av font-bold mb-4 text-[#31323D] bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] text-[68px] max-sm:text-[36px] leading-[80px] max-sm:leading-[50px] max-sm:text-center"
         >
             We track your memories.
         </h1>
         <p
-            class="text-[22px] max-sm:text-lg max-sm:leading-[24px] font-medium text-[#31323D] mb-4 text-center"
+            class="pav text-[22px] max-sm:text-lg max-sm:leading-[24px] font-medium text-[#31323D] mb-4 text-center"
         >
             Your entire life-story right at your fingertips.
         </p>
         <button
-            class="tryButton mb-28 max-sm:mb-28 bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
+            class="tryButton mb-28 max-sm:mb-28 bg-[#FF6A00] hover:bg-[#FA8532] hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
         >
             Try AirVault Now
         </button>
@@ -30,22 +30,125 @@ export const client = "load";
             <img
                 src="/phone1.png"
                 alt="Phone 1"
-                class="w-1/3 max-sm:w-2/3 translate-y-5 translate-x-8 max-sm:translate-x-10"
+                class="w-1/3 max-sm:w-2/3 translate-y-5 translate-x-8 max-sm:translate-x-10 img1av"
             />
             <img
                 src="/phone2.png"
                 alt="Phone 2"
-                class="w-[38%] max-sm:w-[75%] translate-y-2 max-sm:translate-y-4 max-sm:-translate-x-9"
+                class="w-[38%] max-sm:w-[75%] translate-y-2 max-sm:translate-y-4 max-sm:-translate-x-9 img2av"
             />
         </div>
     </div>
 </div>
 
 <script>
-    const tryButtons = document.querySelectorAll(".tryButton");
-    tryButtons.forEach((button) => {
-        button.addEventListener("click", function () {
-            window.location.href = "/register";
+    document.addEventListener("DOMContentLoaded", async () => {
+        const { gsap } = await import("gsap");
+        const { ScrollTrigger } = await import("gsap/ScrollTrigger");
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Animate heading elements
+        gsap.from(".h2av", {
+            scrollTrigger: {
+                trigger: "h2",
+                start: "top 100%",
+                toggleActions: "play reverse play reverse",
+            },
+            opacity: 0,
+            y: 80,
+            duration: 1,
+            ease: "power2.out",
+        });
+
+        gsap.from(".h1av", {
+            scrollTrigger: {
+                trigger: "h1",
+                start: "top 100%",
+                end: window.innerHeight,
+                toggleActions: "play reverse play reverse",
+            },
+            opacity: 0,
+            delay: 0.1,
+            y: 100,
+            duration: 1.1,
+            ease: "power2.out",
+        });
+
+        gsap.from(".pav", {
+            scrollTrigger: {
+                trigger: "p",
+                start: "top 100%",
+
+                toggleActions: "play reverse play reverse",
+            },
+            opacity: 0,
+            delay: 0.1,
+            y: 80,
+            duration: 1.2,
+            ease: "power2.out",
+        });
+
+        gsap.from(".tryButton", {
+            scrollTrigger: {
+                trigger: ".tryButton",
+                start: "top 80%",
+                toggleActions: "play none none none",
+            },
+            opacity: 1,
+            scale: 0.9,
+            delay: 0.2,
+            duration: 1.2,
+            ease: "power2.out",
+        });
+
+        gsap.fromTo(
+            ".img1av",
+            {
+                opacity: 100,
+                y: 20, // Start position (off-screen at the bottom)
+            },
+            {
+                opacity: 1,
+                y: -20, // Move up when scrolling down
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img1av",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+
+        // Image 2 (Moves down when scrolling down, reverse on scroll up)
+        gsap.fromTo(
+            ".img2av",
+            {
+                opacity: 100,
+                y: -20, // Start position (off-screen at the top)
+            },
+            {
+                opacity: 1,
+                y: 20, // Move down when scrolling down
+                duration: 1.2,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: ".img2av",
+                    start: "top 80%",
+                    end: "bottom 20%", // Animation should happen across this area
+                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    toggleActions: "play reverse play reverse",
+                },
+            }
+        );
+
+        const tryButtons = document.querySelectorAll(".tryButton");
+        tryButtons.forEach((button) => {
+            button.addEventListener("click", function () {
+                window.location.href = "/register";
+            });
         });
     });
 </script>

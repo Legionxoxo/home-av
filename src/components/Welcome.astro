@@ -22,7 +22,7 @@ export const client = "load";
         </p>
         <button
             id="tryButton"
-            class="mb-28 max-sm:mb-64 bg-[#FF6A00] hover:bg-[#FA8532] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px] scale-105 transition-transform hover:scale-110"
+            class="mb-28 max-sm:mb-64 bg-[#FF6A00] hover:bg-[#FA8532] text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px] transition-transform hover:scale-110"
         >
             Try AirVault Now
         </button>
@@ -30,10 +30,51 @@ export const client = "load";
 </div>
 
 <script>
-    const tryButton = document.getElementById("tryButton");
-    if (tryButton) {
-        tryButton.addEventListener("click", function () {
-            window.location.href = "/register";
-        });
-    }
+    document.addEventListener("DOMContentLoaded", async () => {
+        const tryButton = document.getElementById("tryButton");
+        if (tryButton) {
+            tryButton.addEventListener("click", () => {
+                window.location.href = "/register";
+            });
+        }
+
+        // Dynamically import GSAP
+        const { gsap } = await import("gsap");
+
+        const header = document.querySelector("h1");
+        const paragraph = document.querySelector("p");
+        const button = document.getElementById("tryButton");
+
+        if (header && paragraph && button) {
+            gsap.timeline()
+                .from(header, {
+                    duration: 1.2,
+                    opacity: 0,
+                    y: 200, // Start 100px below final position
+                    ease: "power2.out",
+                })
+                .from(
+                    paragraph,
+                    {
+                        duration: 1.2,
+                        delay: 0.1,
+                        opacity: 0,
+                        y: 200,
+                        ease: "power2.out",
+                    },
+                    "-=0.5"
+                )
+                .from(
+                    button,
+                    {
+                        duration: 1.2,
+                        opacity: 0,
+                        delay: 0.1,
+                        ease: "power2.out",
+                        scale: 1,
+                    },
+                    "-=0.5"
+                );
+        }
+    });
 </script>
