@@ -43,6 +43,7 @@ export const client = "load";
             class="max-sm:w-[140px] w-full h-full object-cover block sm:rotate-[5deg] sm:scale-105 img5c"
         />
     </div>
+    <div class="sink-point absolute"></div>
 
     <!-- mobile -->
     <div
@@ -86,6 +87,7 @@ export const client = "load";
         // Animate heading elements
         gsap.from(".h1c", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".h1c", // Trigger animation when heading comes into view
                 start: "top 80%",
                 end: "bottom 20%", // When top of the heading hits 100% of the viewport
@@ -102,6 +104,7 @@ export const client = "load";
 
         gsap.from(".pc", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".pc", // Trigger animation when paragraph comes into view
                 start: "top 80%",
                 end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
@@ -118,6 +121,7 @@ export const client = "load";
 
         gsap.from(".tryButton", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".tryButton", // Trigger animation when button comes into view
                 start: "top 80%",
                 end: "bottom 20%", // Trigger when button reaches 80% of viewport
@@ -220,6 +224,76 @@ export const client = "load";
                 },
             }
         );
+        const genieEffect = (triggerElement, sinkPoint) => {
+            let isAnimating = false;
+
+            ScrollTrigger.create({
+                trigger: triggerElement,
+                start: "120% bottom",
+                onEnter: () => {
+                    if (isAnimating) return;
+                    isAnimating = true;
+
+                    const elementRect = triggerElement.getBoundingClientRect();
+                    const sinkRect = sinkPoint.getBoundingClientRect();
+
+                    // Create a timeline for the genie effect
+                    const tl = gsap.timeline({
+                        onComplete: () => {
+                            // Reset to initial state
+                            gsap.to(triggerElement, {
+                                x: 0,
+                                y: 100,
+                                scrub: 2,
+
+                                opacity: 1,
+                                scale: 1.1,
+
+                                duration: 1.5,
+                                delay: 0.2,
+                                onComplete: () => {
+                                    isAnimating = false;
+                                },
+                            });
+                        },
+                    });
+
+                    // Phase 1: Move to the center
+                    tl.to(triggerElement, {
+                        x:
+                            window.innerWidth / 2 -
+                            elementRect.width / 2 -
+                            elementRect.left,
+                        duration: 0.6,
+                        ease: "power1.inOut",
+                    });
+
+                    // Phase 2: Vertical sink with genie effect
+                    tl.to(triggerElement, {
+                        y: window.innerHeight - elementRect.top,
+                        scaleX: 0.1,
+                        scaleY: 1,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: "power3.in",
+                    });
+
+                    // Sink point glow effect
+                    gsap.to(sinkPoint, {
+                        boxShadow: "0 0 50px rgba(52, 152, 219, 1)",
+                        width: "100px",
+                        duration: 0.3,
+                        yoyo: true,
+                        repeat: 1,
+                    });
+                },
+            });
+        };
+
+        // Apply genie effect on img3c at 90% scroll
+        const triggerElement = document.querySelector(".img3c");
+        const sinkPoint = document.querySelector(".sink-point"); // Add a sink-point element
+        genieEffect(triggerElement, sinkPoint);
 
         // Button click functionality
         const tryButtons = document.querySelectorAll(".tryButton");

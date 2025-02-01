@@ -161,6 +161,7 @@
 
         gsap.from(".h1i", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".h1i", // Trigger animation when paragraph comes into view
                 start: "top 70%",
                 end: "bottom 20%",
@@ -192,7 +193,7 @@
                     trigger: ".img1i",
                     start: "top 80%",
                     end: "bottom 20%", // Animation should happen across this area
-                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    scrub: 1.5, // Smooth scroll effect and reverse on scroll up
                     toggleActions: "play reverse play reverse",
                 },
             }
@@ -215,7 +216,7 @@
                     trigger: ".img2i",
                     start: "top 80%",
                     end: "bottom 20%", // Animation should happen across this area
-                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    scrub: 1.5, // Smooth scroll effect and reverse on scroll up
                     toggleActions: "play reverse play reverse",
                 },
             }
@@ -242,7 +243,7 @@
                         trigger: ".img1i",
                         start: "top 100%",
                         end: "bottom 20%", // Animation should happen across this area
-                        scrub: true, // Smooth scroll effect and reverse on scroll up
+                        scrub: 1.5, // Smooth scroll effect and reverse on scroll up
                         toggleActions: "play reverse play reverse",
                     },
                 }

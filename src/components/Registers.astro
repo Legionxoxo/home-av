@@ -42,7 +42,7 @@ export const client = "load";
         class="flex flex-col items-center justify-center h-[calc(100vh-250px)] max-sm:mx-4"
     >
         <h1
-            class="text-[68px] text-center max-sm:text-[36px] font-bold mb-12 max-sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[80px] max-sm:leading-[50px] max-sm:tracking-tight"
+            class="h1r1 text-[68px] text-center max-sm:text-[36px] font-bold mb-12 max-sm:mb-16 bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] leading-[80px] max-sm:leading-[50px] max-sm:tracking-tight"
         >
             Join the waitlist for <span
                 class="font-extrabold bg-gradient-to-r from-[#FF9900] via-[#F54545] to-[#B41FFF] bg-clip-text text-transparent"
@@ -53,7 +53,7 @@ export const client = "load";
 
         <button
             onclick="window.handleFormRedirect()"
-            class="max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
+            class="tryButton1 max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-6 rounded-full font-medium text-[18px]"
         >
             Join the waitlist
         </button>
@@ -65,24 +65,70 @@ export const client = "load";
         class="hidden flex flex-col items-center justify-center h-[calc(100vh-250px)] max-sm:mx-4"
     >
         <h1
-            class="text-[68px] pb-4 text-center max-sm:text-[36px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] max-sm:leading-[55px] leading-[80px] max-sm:tracking-tight"
+            class="h1r2 text-[68px] pb-4 text-center max-sm:text-[36px] font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#5C5C5C] via-[#3D3D3D] to-[#5C5C5C] max-sm:leading-[55px] leading-[80px] max-sm:tracking-tight"
         >
             We've added you to <span> <br />our waiting list!</span>
         </h1>
-        <p class="font-medium text-[16px] text-[#64667A] mb-12">
+        <p class="p1 font-medium text-[16px] text-[#64667A] mb-12">
             We'll let you know when AirVault is ready!
         </p>
         <button
             onclick="window.resetFormFlag()"
-            class="max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-14 rounded-full font-medium text-[18px]"
+            class="p3 max-sm:w-[calc(100%-2rem)] bg-[#FF6A00] hover:bg-[#FA8532] scale-105 transition-transform hover:scale-110 text-[#F9F9F9] py-3 px-14 rounded-full font-medium text-[18px]"
         >
             Continue
         </button>
         <button
             onclick="window.handleFormRedirect()"
-            class="max-sm:w-[calc(100%-2rem)] font-medium text-[#2766F5] py-3 px-14 rounded-full text-[16px] max-sm:mt-4 sm:-mr-4"
+            class="p2 max-sm:w-[calc(100%-2rem)] font-medium text-[#2766F5] py-3 px-14 rounded-full text-[16px] max-sm:mt-4 sm:-mr-4"
         >
             Submit another <span class="-rotate-90 mt-px">&gt;</span>
         </button>
     </div>
 </div>
+<script>
+    document.addEventListener("DOMContentLoaded", async () => {
+        const tryButton = document.getElementById("tryButton");
+        // Dynamically import GSAP
+        const { gsap } = await import("gsap");
+
+        gsap.timeline()
+            .from(".h1r1", {
+                duration: 1.2,
+                opacity: 0,
+                y: 100, // Start 100px below final position
+                ease: "power2.out",
+            })
+            .from(".tryButton1", {
+                duration: 0.4,
+                opacity: 0,
+                y: -20,
+                ease: "power2.out",
+            });
+        /* after button click  */
+        gsap.from(".h1r2", {
+            duration: 1.2,
+            opacity: 0,
+            y: 100, // Start 100px below final position
+            ease: "power2.out",
+        });
+        gsap.from(".p1", {
+            duration: 1.2,
+            opacity: 0,
+            y: 100, // Start 100px below final position
+            ease: "power2.out",
+        });
+        gsap.from(".p2", {
+            opacity: 0,
+            y: 100,
+            ease: "power2.out",
+            duration: 1.2,
+        });
+        gsap.from(".p3", {
+            opacity: 0,
+            y: 100,
+            ease: "power2.out",
+            duration: 1.2,
+        });
+    });
+</script>

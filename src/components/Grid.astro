@@ -122,6 +122,7 @@ export const client = "load";
                 trigger: ".h1grid", // Trigger animation when heading comes into view
                 start: "top 80%",
                 end: "bottom 20%", // When top of the heading hits 100% of the viewport
+                scrub: 1.5,
                 toggleActions: "play reverse play reverse",
                 onLeave: () => {
                     gsap.set(".h1grid", { opacity: 0 }); // Reset to initial state when leaving
@@ -135,6 +136,7 @@ export const client = "load";
 
         gsap.from(".pgrid", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".pgrid", // Trigger animation when paragraph comes into view
                 start: "top 90%",
                 end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
@@ -151,6 +153,7 @@ export const client = "load";
 
         gsap.from(".tryButton", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".tryButton", // Trigger animation when button comes into view
                 start: "top 80%",
                 end: "bottom 20%", // Trigger when button reaches 80% of viewport

@@ -66,6 +66,7 @@ export const client = "load";
         // Animate heading elements
         gsap.from(".h1v", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".h1v", // Trigger animation when heading comes into view
                 start: "top 70%",
                 end: "bottom 20%", // When top of the heading hits 100% of the viewport
@@ -82,6 +83,7 @@ export const client = "load";
 
         gsap.from(".pv", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".pv", // Trigger animation when paragraph comes into view
                 start: "top 90%",
                 end: "bottom 20%", // Trigger when the paragraph is 80% in the viewport
@@ -98,6 +100,7 @@ export const client = "load";
 
         gsap.from(".tryButton", {
             scrollTrigger: {
+                scrub: 1.5,
                 trigger: ".tryButton", // Trigger animation when button comes into view
                 start: "top 80%",
                 end: "bottom 20%", // Trigger when button reaches 80% of viewport
@@ -125,10 +128,11 @@ export const client = "load";
                 duration: 2,
                 ease: "power2.out",
                 scrollTrigger: {
+                    scrub: 1.5,
                     trigger: ".img1v",
                     start: "top 80%",
                     end: "bottom 20%", // Animation should happen across this area
-                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    // Smooth scroll effect and reverse on scroll up
                     toggleActions: "play reverse play reverse",
                 },
             }
@@ -150,7 +154,7 @@ export const client = "load";
                     trigger: ".img4v",
                     start: "top 80%",
                     end: "bottom 20%", // Animation should happen across this area
-                    scrub: true, // Smooth scroll effect and reverse on scroll up
+                    scrub: 1.5, // Smooth scroll effect and reverse on scroll up
                     toggleActions: "play reverse play reverse",
                 },
             }
