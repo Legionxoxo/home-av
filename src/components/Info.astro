@@ -153,7 +153,7 @@
 
 <script>
     document.addEventListener("DOMContentLoaded", async () => {
-        const { gsap } = await import("gsap");
+        /*  const { gsap } = await import("gsap");
         const { ScrollTrigger } = await import("gsap/ScrollTrigger");
         gsap.registerPlugin(ScrollTrigger);
 
@@ -174,11 +174,11 @@
             y: 100, // Start from 100px below
             duration: 1.2, // Duration of animation
             ease: "power2.out",
-        });
+        }); */
 
         /* image1 */
 
-        gsap.fromTo(
+        /*  gsap.fromTo(
             ".img1i",
             {
                 opacity: 100,
@@ -197,11 +197,11 @@
                     toggleActions: "play reverse play reverse",
                 },
             }
-        );
+        ); */
 
         // Image 2 (Moves down when scrolling down, reverse on scroll up)
 
-        gsap.fromTo(
+        /*  gsap.fromTo(
             ".img2i",
             {
                 opacity: 100,
@@ -220,10 +220,10 @@
                     toggleActions: "play reverse play reverse",
                 },
             }
-        );
+        ); */
 
         /* image3  */
-        if (mediaQuery.matches) {
+        /*  if (mediaQuery.matches) {
             gsap.fromTo(
                 ".img3i",
                 {
@@ -248,7 +248,7 @@
                     },
                 }
             );
-        }
+        } */
         // Button click functionality
         const tryButtons = document.querySelectorAll(".tryButton");
         tryButtons.forEach((button) => {
